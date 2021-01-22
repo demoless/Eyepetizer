@@ -1,4 +1,7 @@
+import com.four.buildsrc.hotfix.HotfixPlugin
+
 apply plugin: 'com.android.application'
+apply plugin: HotfixPlugin
 
 def keystorePropertiesFile = rootProject.file("keystore.properties")
 
