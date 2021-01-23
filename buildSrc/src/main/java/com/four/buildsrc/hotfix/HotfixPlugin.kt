@@ -34,6 +34,10 @@ class HotfixPlugin: BaseTransform(),Plugin<Project> {
             isLibraryModule = true
         }
         extension.registerTransform(this)
+        ClassInfo.classFilterSet.apply {
+            this.add("BuildConfig")
+            this.add("AppApplication")
+        }
     }
 
     override fun getName(): String {
@@ -64,7 +68,7 @@ class HotfixPlugin: BaseTransform(),Plugin<Project> {
         if(newName.endsWith(".class")) {
             newName = newName.substring(0,newName.length-6)
         }
-        if (newName == "BuildConfig" || newName == "FixTest") {
+        if (ClassInfo.classFilterSet.contains(newName)) {
             return true
         }
         return false

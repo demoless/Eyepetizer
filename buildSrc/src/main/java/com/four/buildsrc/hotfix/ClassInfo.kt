@@ -9,4 +9,8 @@ object ClassInfo {
     val classSets: HashSet<String> by lazy(mode = LazyThreadSafetyMode.PUBLICATION) {
         HashSet<String>()
     }
+
+    val classFilterSet: HashSet<String> by lazy(mode = LazyThreadSafetyMode.PUBLICATION) {
+        HashSet<String>()
+    }
 }

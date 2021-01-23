@@ -107,5 +107,5 @@ dependencies {
         //用户模块
         implementation project(':module-user')
     }
-//    debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.2'
+    debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.2'
 }
