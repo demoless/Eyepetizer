@@ -1,2 +1,2 @@
-include ':app', ':library-base', ':library-common',':library-servicemanager', ':library-network', ':module-main', ':module-home', ':module-community', ':library-video', ':module-more', ':module-player', ':module-user'
+include ':app', ':library-base', ':library-common',':library-servicemanager', ':library-network', ':module-main', ':module-home', ':module-community', ':library-video', ':module-more', ':module-player', ':module-user', ':hotfix'
 rootProject.name='MvvmComponent'

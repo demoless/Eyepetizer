@@ -106,6 +106,8 @@ dependencies {
         implementation project(':module-player')
         //用户模块
         implementation project(':module-user')
+
+        implementation project(':hotfix')
     }
     debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.2'
 }
