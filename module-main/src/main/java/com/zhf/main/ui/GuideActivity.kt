@@ -3,13 +3,13 @@ package com.zhf.main.ui
 
 import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.View
 import android.view.animation.DecelerateInterpolator
 import android.widget.Toast
 import androidx.core.content.ContextCompat
 import com.zhf.main.R
-import com.zhf.main.bean.CustomBean
 import com.zhf.main.viewholder.CustomPageViewHolder
 import com.gyf.immersionbar.BarHide
 import com.gyf.immersionbar.ImmersionBar
@@ -32,17 +32,16 @@ class GuideActivity : BaseDataActivity(), HolderCreator<CustomPageViewHolder> {
 
     private val transforms = intArrayOf(TransformerStyle.NONE, TransformerStyle.ACCORDION, TransformerStyle.STACK, TransformerStyle.DEPTH, TransformerStyle.ROTATE, TransformerStyle.SCALE_IN)
 
-    private val data: List<CustomBean>
-        get() {
-            val list = ArrayList<CustomBean>()
+    private val data: List<CustomBean> by lazy {
+        ArrayList<CustomBean>().apply {
             for (i in mDrawableList.indices) {
                 val customBean = CustomBean()
                 customBean.imageRes = mDrawableList[i]
                 customBean.imageDescription = des[i]
-                list.add(customBean)
+                this.add(customBean)
             }
-            return list
         }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -56,6 +55,7 @@ class GuideActivity : BaseDataActivity(), HolderCreator<CustomPageViewHolder> {
         mViewPager.create(data)
     }
 
+    @SuppressLint("WrongConstant")
     private fun setupViewPager() {
         mViewPager = findViewById(R.id.viewpager)
         mViewPager.setAutoPlay(false)

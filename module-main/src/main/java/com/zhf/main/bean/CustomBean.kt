@@ -1,15 +1,11 @@
 package com.zhf.main.bean
 
 /**
- * 应用模块:
- * <p>
- * 类描述:
- * <p>
+ * created by demoless on 2021/1/27
+ * description:
  */
-class CustomBean {
-    var imageRes: Int = 0
+data class CustomBean(var imageRes: Int = 0,
 
-    var imageDescription: String? = null
+                      var imageDescription: String? = null,
 
-    var imgUrl: String? = null
-}
+                      var imgUrl: String? = null)

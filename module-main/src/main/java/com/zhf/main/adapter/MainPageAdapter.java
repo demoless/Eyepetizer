@@ -31,10 +31,10 @@ public class MainPageAdapter extends FragmentPagerAdapter {
     @NonNull
     @Override
     public Fragment getItem(int position) {
-        if (fragments != null && fragments.size() > 0){
-            return fragments.get(position);
+        if (fragments == null || fragments.isEmpty()) {
+            throw new IllegalArgumentException("MainPageAdapter fragments is null or empty!!!");
         }
-        return null;
+        return fragments.get(position);
     }
 
     @Override

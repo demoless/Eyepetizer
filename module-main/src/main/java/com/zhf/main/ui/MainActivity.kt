@@ -16,7 +16,7 @@ import com.zhf.common.router.RouterFragmentPath
 import com.zhf.main.R
 import com.zhf.main.adapter.MainPageAdapter
 import com.zhf.main.databinding.MainActivityMainBinding
-import com.zhf.main.utils.ColorUtils
+import com.zhf.main.utils.ColorUtil
 
 /**
  * created by demoless on 2021/1/27
@@ -57,18 +57,18 @@ class MainActivity : MvvmBaseActivity<MainActivityMainBinding, IMvvmBaseViewMode
         val mNavigationController = viewDataBinding.bottomView.material()
                 .addItem(R.drawable.main_home,
                         "首页",
-                        ColorUtils.getColor(this, R.color.main_bottom_check_color))
+                        ColorUtil.getColor(this, R.color.main_bottom_check_color))
                 .addItem(R.drawable.main_community,
                         "社区",
-                        ColorUtils.getColor(this, R.color.main_bottom_check_color))
+                        ColorUtil.getColor(this, R.color.main_bottom_check_color))
                 .addItem(R.drawable.main_notify,
                         "通知",
-                        ColorUtils.getColor(this, R.color.main_bottom_check_color))
+                        ColorUtil.getColor(this, R.color.main_bottom_check_color))
                 .addItem(R.drawable.main_user,
                         "我的",
-                        ColorUtils.getColor(this, R.color.main_bottom_check_color))
+                        ColorUtil.getColor(this, R.color.main_bottom_check_color))
                 .setDefaultColor(
-                        ColorUtils.getColor(this, R.color.main_bottom_default_color))
+                        ColorUtil.getColor(this, R.color.main_bottom_default_color))
                 .enableAnimateLayoutChanges()
                 .build()
         mNavigationController.setHasMessage(2, true)
@@ -85,6 +85,7 @@ class MainActivity : MvvmBaseActivity<MainActivityMainBinding, IMvvmBaseViewMode
             this.add(ARouter.getInstance().build(RouterFragmentPath.More.PAGER_MORE).navigation() as Fragment)
             this.add(ARouter.getInstance().build(RouterFragmentPath.User.PAGER_USER).navigation() as Fragment)
         }
+        adapter.setData(fragments)
     }
     override fun getViewModel(): IMvvmBaseViewModel<*>? = null
 
