@@ -135,6 +135,7 @@ public abstract class MvvmBaseActivity<V extends ViewDataBinding, VM extends IMv
     /**
      * 获取viewModel
      */
+    @Nullable
     protected abstract VM getViewModel();
     
     /**

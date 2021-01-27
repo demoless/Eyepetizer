@@ -26,7 +26,7 @@ public class CustomPageViewHolder implements ViewHolder<CustomBean> {
     @Override
     public void onBind(View itemView, CustomBean data, int position, int size) {
         ImageView mImageView = itemView.findViewById(R.id.banner_image);
-
+        itemView.setOnClickListener(v -> mOnSubViewClickListener.onViewClick(v, position));
         mImageView.setImageResource(data.getImageRes());
         ObjectAnimator alphaAnimator = ObjectAnimator.ofFloat(mImageView, "alpha", 0, 1);
         alphaAnimator.setDuration(1500);
