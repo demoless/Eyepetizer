@@ -19,6 +19,7 @@ package com.zhf.http.model;
 import android.os.Build;
 import android.text.TextUtils;
 
+
 import com.zhf.http.EasyHttp;
 import com.zhf.http.utils.HttpLog;
 
@@ -266,6 +267,7 @@ public class HttpHeaders implements Serializable {
         SimpleDateFormat formatter = new SimpleDateFormat(FORMAT_HTTP_DATA, Locale.US);
         formatter.setTimeZone(GMT_TIME_ZONE);
         Date date = formatter.parse(gmtTime);
+        assert date != null;
         return date.getTime();
     }
 

@@ -16,6 +16,7 @@
 
 package com.zhf.http;
 
+import android.annotation.SuppressLint;
 import android.app.Application;
 import android.content.Context;
 import android.text.TextUtils;
@@ -50,7 +51,10 @@ import javax.net.ssl.SSLSession;
 
 import io.reactivex.annotations.NonNull;
 import io.reactivex.disposables.Disposable;
+import io.reactivex.disposables.Disposables;
 import io.reactivex.functions.Consumer;
+import io.reactivex.internal.disposables.DisposableContainer;
+import io.reactivex.internal.disposables.DisposableHelper;
 import okhttp3.Cache;
 import okhttp3.ConnectionPool;
 import okhttp3.Interceptor;
@@ -81,7 +85,8 @@ public final class EasyHttp {
     private static final int DEFAULT_RETRY_COUNT = 3;                 //默认重试次数
     private static final int DEFAULT_RETRY_INCREASEDELAY = 0;         //默认重试叠加时间
     private static final int DEFAULT_RETRY_DELAY = 500;               //默认重试延时
-    public static final int DEFAULT_CACHE_NEVER_EXPIRE = -1;          //缓存过期时间，默认永久缓存
+    public static final int DEFAULT_CACHE_NEVER_EXPIRE = -1;
+    private static DisposableContainer disposableContainer;//缓存过期时间，默认永久缓存
     private Cache mCache = null;                                      //Okhttp缓存对象
     private CacheMode mCacheMode = CacheMode.NO_CACHE;                //缓存类型
     private long mCacheTime = -1;                                     //缓存时间
@@ -93,20 +98,20 @@ public final class EasyHttp {
     private int mRetryIncreaseDelay = DEFAULT_RETRY_INCREASEDELAY;    //叠加延迟
     private HttpHeaders mCommonHeaders;                               //全局公共请求头
     private HttpParams mCommonParams;                                 //全局公共请求参数
-    private OkHttpClient.Builder okHttpClientBuilder;                 //okhttp请求的客户端
-    private Retrofit.Builder retrofitBuilder;                         //Retrofit请求Builder
-    private RxCache.Builder rxCacheBuilder;                           //RxCache请求的Builder
+    private final OkHttpClient.Builder okHttpClientBuilder;                 //okhttp请求的客户端
+    private final Retrofit.Builder retrofitBuilder;                         //Retrofit请求Builder
+    private final RxCache.Builder rxCacheBuilder;                           //RxCache请求的Builder
     private CookieManger cookieJar;                                   //Cookie管理
     private volatile static EasyHttp singleton = null;
 
     private EasyHttp() {
-        okHttpClientBuilder = new OkHttpClient.Builder();
-        okHttpClientBuilder.hostnameVerifier(new DefaultHostnameVerifier());
-        okHttpClientBuilder.connectTimeout(DEFAULT_MILLISECONDS, TimeUnit.MILLISECONDS);
-        okHttpClientBuilder.readTimeout(DEFAULT_MILLISECONDS, TimeUnit.MILLISECONDS);
-        okHttpClientBuilder.writeTimeout(DEFAULT_MILLISECONDS, TimeUnit.MILLISECONDS);
-        retrofitBuilder = new Retrofit.Builder();
-        retrofitBuilder.addCallAdapterFactory(RxJava2CallAdapterFactory.create());//增加RxJava2CallAdapterFactory
+        okHttpClientBuilder = new OkHttpClient.Builder()
+                .hostnameVerifier(new DefaultHostnameVerifier())
+                .connectTimeout(DEFAULT_MILLISECONDS, TimeUnit.MILLISECONDS)
+                .readTimeout(DEFAULT_MILLISECONDS, TimeUnit.MILLISECONDS)
+                .writeTimeout(DEFAULT_MILLISECONDS, TimeUnit.MILLISECONDS);
+        retrofitBuilder = new Retrofit.Builder()
+                .addCallAdapterFactory(RxJava2CallAdapterFactory.create());//增加RxJava2CallAdapterFactory
         rxCacheBuilder = new RxCache.Builder().init(sContext)
                 .diskConverter(new SerializableDiskConverter());      //目前只支持Serializable和Gson缓存其它可以自己扩展
     }
@@ -209,7 +214,8 @@ public final class EasyHttp {
      * 则验证机制可以回调此接口的实现程序来确定是否应该允许此连接。策略可以是基于证书的或依赖于其他验证方案。
      * 当验证 URL 主机名使用的默认规则失败时使用这些回调。如果主机名是可接受的，则返回 true
      */
-    public class DefaultHostnameVerifier implements HostnameVerifier {
+    public static class DefaultHostnameVerifier implements HostnameVerifier {
+        @SuppressLint("BadHostnameVerifier")
         @Override
         public boolean verify(String hostname, SSLSession session) {
             return true;
@@ -595,35 +601,18 @@ public final class EasyHttp {
     /**
      * 清空缓存
      */
+    @SuppressLint("CheckResult")
     public static void clearCache() {
-        getRxCache().clear().compose(RxUtil.<Boolean>io_main())
-                .subscribe(new Consumer<Boolean>() {
-                    @Override
-                    public void accept(@NonNull Boolean aBoolean) throws Exception {
-                        HttpLog.i("clearCache success!!!");
-                    }
-                }, new Consumer<Throwable>() {
-                    @Override
-                    public void accept(@NonNull Throwable throwable) throws Exception {
-                        HttpLog.i("clearCache err!!!");
-                    }
-                });
+        Disposable disposable = getRxCache().clear().compose(RxUtil.<Boolean>io_main())
+                .subscribe(aBoolean -> HttpLog.i("clearCache success!!!"), throwable -> HttpLog.i("clearCache err!!!"));
+        disposableContainer.add(disposable);
     }
 
     /**
      * 移除缓存（key）
      */
     public static void removeCache(String key) {
-        getRxCache().remove(key).compose(RxUtil.<Boolean>io_main()).subscribe(new Consumer<Boolean>() {
-            @Override
-            public void accept(@NonNull Boolean aBoolean) throws Exception {
-                HttpLog.i("removeCache success!!!");
-            }
-        }, new Consumer<Throwable>() {
-            @Override
-            public void accept(@NonNull Throwable throwable) throws Exception {
-                    HttpLog.i("removeCache err!!!");
-            }
-        });
+        Disposable disposable = getRxCache().remove(key).compose(RxUtil.<Boolean>io_main()).subscribe(aBoolean -> HttpLog.i("removeCache success!!!"), throwable -> HttpLog.i("removeCache err!!!"));
+        disposableContainer.add(disposable);
     }
 }

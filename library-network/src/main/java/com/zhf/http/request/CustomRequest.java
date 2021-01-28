@@ -59,11 +59,11 @@ public class CustomRequest extends BaseRequest<CustomRequest> {
      * @param service 自定义的apiservice class
      */
     public <T> T create(final Class<T> service) {
-        checkvalidate();
+        checkValidate();
         return retrofit.create(service);
     }
 
-    private void checkvalidate() {
+    private void checkValidate() {
         Utils.checkNotNull(retrofit, "请先在调用build()才能使用");
     }
 
@@ -72,7 +72,7 @@ public class CustomRequest extends BaseRequest<CustomRequest> {
      * 举例：如果你给的是一个Observable<ApiResult<AuthModel>> 那么返回的<T>是一个ApiResult<AuthModel>
      */
     public <T> Observable<T> call(Observable<T> observable) {
-        checkvalidate();
+        checkValidate();
         return observable.compose(RxUtil.io_main())
                 .compose(new HandleErrTransformer())
                 .retryWhen(new RetryExceptionFunc(retryCount, retryDelay, retryIncreaseDelay));
@@ -93,7 +93,7 @@ public class CustomRequest extends BaseRequest<CustomRequest> {
      * 举例：如果你给的是一个Observable<ApiResult<AuthModel>> 那么返回的<T>是AuthModel
      */
     public <T> Observable<T> apiCall(Observable<ApiResult<T>> observable) {
-        checkvalidate();
+        checkValidate();
         return observable
                 .map(new HandleFuc<T>())
                 .compose(RxUtil.<T>io_main())

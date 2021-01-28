@@ -1,6 +1,5 @@
 package com.zhf.user;
 
-import com.zhf.base.base.BaseApplication;
 import com.zhf.common.IModuleInit;
 
 /**

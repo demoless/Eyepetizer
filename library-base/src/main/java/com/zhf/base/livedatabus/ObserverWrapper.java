@@ -11,7 +11,7 @@ import androidx.lifecycle.Observer;
  */
 public class ObserverWrapper<T> implements Observer<T> {
 
-    private Observer<T> observer;
+    private final Observer<T> observer;
 
     public ObserverWrapper(Observer<T> observer) {
         this.observer = observer;
@@ -29,7 +29,7 @@ public class ObserverWrapper<T> implements Observer<T> {
 
     private boolean isCallOnObserve() {
         StackTraceElement[] stackTrace = Thread.currentThread().getStackTrace();
-        if (stackTrace != null && stackTrace.length > 0) {
+        if (stackTrace.length > 0) {
             for (StackTraceElement element : stackTrace) {
                 if ("android.arch.lifecycle.LiveData".equals(element.getClassName()) &&
                         "observeForever".equals(element.getMethodName())) {

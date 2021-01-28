@@ -21,7 +21,7 @@ public class AppManager
     
     private static class SingleHolder
     {
-        private static AppManager instance = new AppManager();
+        private static final AppManager instance = new AppManager();
     }
     
     public static AppManager getInstance()
@@ -69,8 +69,7 @@ public class AppManager
      */
     public Activity currentActivity()
     {
-        Activity activity = activityStack.lastElement();
-        return activity;
+        return activityStack.lastElement();
     }
     
     /**

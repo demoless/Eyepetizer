@@ -1,6 +1,5 @@
 package com.zhf.Eyepetizer;
 
-import com.zhf.base.base.BaseApplication;
 import com.zhf.common.config.ModuleLifecycleConfig;
 
 /**
