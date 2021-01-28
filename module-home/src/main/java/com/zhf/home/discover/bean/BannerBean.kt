@@ -25,7 +25,7 @@ class BannerBean(@SerializedName("type") val type: String,
      * actionUrl : eyepetizer://webview/?title=&url=https%3A%2F%2Fwww.kaiyanapp.com%2Fnew_article.html%3Fnid%3D1468%26shareable%3Dtrue
      * adTrack : null shade : false label : null labelList : null header : null autoPlay : false
      */
-    class DataBean(@SerializedName("dataType") val dataType: String,
+    data class DataBean(@SerializedName("dataType") val dataType: String,
                    @SerializedName("id") val id: Int,
                    @SerializedName("title") val title: String,
                    @SerializedName("description") val description: Any,
@@ -36,7 +36,5 @@ class BannerBean(@SerializedName("type") val type: String,
                    @SerializedName("label") val label: Any,
                    @SerializedName("labelList") val labelList: Any,
                    @SerializedName("header") val header: Any,
-                   @SerializedName("autoPlay") val autoPlay:Boolean) {
-
-    }
+                   @SerializedName("autoPlay") val autoPlay:Boolean)
 }

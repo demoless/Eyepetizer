@@ -10,7 +10,6 @@ import org.json.JSONObject;
 import com.zhf.base.model.BaseModel;
 import com.zhf.base.utils.GsonUtils;
 import com.zhf.common.contract.BaseCustomViewModel;
-import com.zhf.home.discover.bean.BriefCard;
 import com.zhf.home.discover.bean.CategoryCardBean;
 import com.zhf.home.discover.bean.SubjectCardBean;
 import com.zhf.home.discover.bean.TextCardbean;
