@@ -14,7 +14,6 @@ import com.zhf.home.R;
 import com.zhf.home.databinding.HomeItemCategoryCardViewBinding;
 import com.zhf.home.discover.adapter.CategoryItemAdapter;
 import com.zhf.home.discover.bean.CategoryCardBean;
-import com.zhf.home.discover.bean.SquareCard;
 
 import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.GridLayoutManager;
