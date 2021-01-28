@@ -13,6 +13,7 @@ import com.zhf.main.R
 import com.zhf.main.viewholder.CustomPageViewHolder
 import com.gyf.immersionbar.BarHide
 import com.gyf.immersionbar.ImmersionBar
+import com.zhf.main.bean.CustomBean
 import com.zhpan.bannerview.BannerViewPager
 import com.zhpan.bannerview.adapter.OnPageChangeListenerAdapter
 import com.zhpan.bannerview.constants.TransformerStyle

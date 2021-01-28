@@ -13,6 +13,7 @@ import com.zhf.common.utils.DensityUtils;
 import com.zhf.home.R;
 import com.zhf.home.databinding.HomeItemSubjectCardViewBinding;
 import com.zhf.home.discover.adapter.SubjectItemAdapter;
+import com.zhf.home.discover.bean.SquareCard;
 import com.zhf.home.discover.bean.SubjectCardBean;
 
 import androidx.databinding.DataBindingUtil;

@@ -1,5 +1,6 @@
 package com.zhf.Eyepetizer;
 
+import com.zhf.base.base.BaseApplication;
 import com.zhf.common.config.ModuleLifecycleConfig;
 
 /**
@@ -9,9 +10,8 @@ import com.zhf.common.config.ModuleLifecycleConfig;
  * <p>
  *
  */
-public class AppApplication extends BaseApplication
-{
-    
+public class AppApplication extends BaseApplication {
+
     @Override
     public void onCreate()
     {

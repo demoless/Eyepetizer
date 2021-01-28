@@ -14,6 +14,7 @@ import com.zhf.home.R;
 import com.zhf.home.databinding.HomeItemCategoryCardViewBinding;
 import com.zhf.home.discover.adapter.CategoryItemAdapter;
 import com.zhf.home.discover.bean.CategoryCardBean;
+import com.zhf.home.discover.bean.SquareCard;
 
 import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -25,7 +26,6 @@ import androidx.recyclerview.widget.RecyclerView;
  * 类描述:
  * <p>
  *
- * @author darryrzhoong
  * @since 2020-02-15
  */
 public class CategoryCardProvider extends BaseItemProvider<BaseCustomViewModel>

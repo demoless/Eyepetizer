@@ -9,10 +9,10 @@ import com.zhf.base.BuildConfig
  * created by demoless on 2021/1/27
  * description:
  */
-class BaseApplication private constructor(): Application() {
+open class BaseApplication : Application() {
     companion object {
         @JvmStatic
-        private val isDebug: Boolean = BuildConfig.DEBUG
+        private var isDebug: Boolean = BuildConfig.DEBUG
 
         @JvmName("getInstance1")
         fun getInstance() : BaseApplication = INSTANCE
@@ -42,7 +42,13 @@ class BaseApplication private constructor(): Application() {
         }
     }
 
+    override fun onCreate() {
+        super.onCreate()
+    }
+
     fun issDebug(): Boolean = isDebug
 
-
+    fun setsDebug(debug: Boolean) {
+        isDebug = debug
+    }
 }

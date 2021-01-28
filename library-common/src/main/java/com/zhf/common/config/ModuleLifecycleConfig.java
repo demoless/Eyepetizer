@@ -22,7 +22,7 @@ public class ModuleLifecycleConfig
     
     private static class SingleHolder
     {
-        private static ModuleLifecycleConfig instance =
+        private static final ModuleLifecycleConfig instance =
             new ModuleLifecycleConfig();
     }
     

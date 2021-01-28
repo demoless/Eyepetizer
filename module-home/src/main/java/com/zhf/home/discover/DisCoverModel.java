@@ -15,7 +15,7 @@ import com.zhf.home.discover.bean.BriefCard;
 import com.zhf.home.discover.bean.CategoryCardBean;
 import com.zhf.home.discover.bean.SubjectCardBean;
 import com.zhf.home.discover.bean.TextCard;
-import com.zhf.home.discover.bean.TopBannerBean;
+import com.zhf.home.discover.bean.TopBanner;
 import com.zhf.home.discover.bean.viewmodel.BriefCardViewModel;
 import com.zhf.home.discover.bean.viewmodel.ContentBannerViewModel;
 import com.zhf.home.discover.bean.viewmodel.TopBannerViewModel;
@@ -77,7 +77,7 @@ public class DisCoverModel<T> extends BaseModel<T>
                     switch (ccurrentObject.optString("type"))
                     {
                         case "horizontalScrollCard":
-                            TopBannerBean topBannerBean = GsonUtils.fromLocalJson(ccurrentObject.toString(),TopBannerBean.class);
+                            TopBanner topBannerBean = GsonUtils.fromLocalJson(ccurrentObject.toString(),TopBanner.class);
                             TopBannerViewModel topBannerViewModel = new TopBannerViewModel();
                             topBannerViewModel.bannerUrl = topBannerBean.getData().getItemList().get(0).getData().getImage();
                             viewModels.add(topBannerViewModel);

@@ -34,7 +34,7 @@ data class TopBanner (@SerializedName("type")       val type: String,
          * adIndex : -1
          */
         data class ItemBean(@SerializedName("type")     val dataType: String,
-                            @SerializedName("data")     val itemDataBean: ItemDataBean,
+                            @SerializedName("data")     val data: ItemDataBean,
                             @SerializedName("tag")      val tag: Any,
                             @SerializedName("id")       val id: Int,
                             @SerializedName("adIndex")  val adIndex: Int) {

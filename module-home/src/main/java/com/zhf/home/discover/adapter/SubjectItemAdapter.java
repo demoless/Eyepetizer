@@ -6,6 +6,7 @@ import org.jetbrains.annotations.Nullable;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.viewholder.BaseViewHolder;
 import com.zhf.home.databinding.HomeItemCategoryItemSubjectCardViewBinding;
+import com.zhf.home.discover.bean.SquareCard;
 
 import androidx.databinding.DataBindingUtil;
 
