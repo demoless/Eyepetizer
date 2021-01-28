@@ -10,9 +10,11 @@ import org.json.JSONObject;
 import com.zhf.base.model.BaseModel;
 import com.zhf.base.utils.GsonUtils;
 import com.zhf.common.contract.BaseCustomViewModel;
+import com.zhf.home.discover.bean.BannerBean;
+import com.zhf.home.discover.bean.BriefCard;
 import com.zhf.home.discover.bean.CategoryCardBean;
 import com.zhf.home.discover.bean.SubjectCardBean;
-import com.zhf.home.discover.bean.TextCardbean;
+import com.zhf.home.discover.bean.TextCard;
 import com.zhf.home.discover.bean.TopBannerBean;
 import com.zhf.home.discover.bean.viewmodel.BriefCardViewModel;
 import com.zhf.home.discover.bean.viewmodel.ContentBannerViewModel;
@@ -89,10 +91,10 @@ public class DisCoverModel<T> extends BaseModel<T>
                             viewModels.add(subjectCardBean);
                             break;
                         case "textCard":
-                            TextCardbean textCardbean = GsonUtils.fromLocalJson(ccurrentObject.toString(),TextCardbean.class);
+                            TextCard textCard = GsonUtils.fromLocalJson(ccurrentObject.toString(), TextCard.class);
                             TitleViewModel titleViewModel = new TitleViewModel();
-                            titleViewModel.title = textCardbean.getData().getText();
-                            titleViewModel.actionTitle = textCardbean.getData().getRightText();
+                            titleViewModel.title = textCard.getData().getText();
+                            titleViewModel.actionTitle = textCard.getData().getRightText();
                             viewModels.add(titleViewModel);
                             break;
                         case "banner":
