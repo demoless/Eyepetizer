@@ -6,7 +6,7 @@ import com.google.gson.annotations.SerializedName
  * created by demoless on 2021/1/28
  * description:
  */
-class TextCard(@SerializedName("type")     val type: String,
+data class TextCard(@SerializedName("type")     val type: String,
                @SerializedName("data")     val data: DataBean,
                @SerializedName("tag")      val tag: Any,
                @SerializedName("id")       val id: Int,
@@ -31,5 +31,5 @@ class TextCard(@SerializedName("type")     val type: String,
                         @SerializedName("actionUrl")    val actionUrl: String,
                         @SerializedName("adTrack")      val adTrack: Any,
                         @SerializedName("follow")       val follow: Any,
-                        @SerializedName("rightText")    val rightText: String,)
+                        @SerializedName("rightText")    val rightText: String)
 }

@@ -6,14 +6,14 @@ import com.google.gson.annotations.SerializedName
  * created by demoless on 2021/1/28
  * description:
  */
-class SquareCard(@SerializedName("dataType")    val dataType: String,
+data class SquareCard(@SerializedName("dataType")    val dataType: String,
                  @SerializedName("id")          val id: Int,
                  @SerializedName("title")       val title: String,
                  @SerializedName("image")       val image: String,
                  @SerializedName("actionUrl")   val actionUrl: String,
                  @SerializedName("shade")       val shade: Boolean,
                  @SerializedName("adTrack")     val adTrack: Any,
-                 @SerializedName("description") val description: String,) {
+                 @SerializedName("description") val description: String) {
     /**
      * dataType : SquareCard
      * id : 14

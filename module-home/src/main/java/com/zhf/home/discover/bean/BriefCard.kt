@@ -6,11 +6,11 @@ import com.google.gson.annotations.SerializedName
  * created by demoless on 2021/1/28
  * description:
  */
-class BriefCard(@SerializedName("type")     val type: String,
-                @SerializedName("data")     val data: DataBean,
-                @SerializedName("tag")      val tag: Any,
-                @SerializedName("id")       val id: Int,
-                @SerializedName("adIndex")  val adIndex: Int) {
+data class BriefCard(@SerializedName("type")     val type: String,
+                     @SerializedName("data")     val data: DataBean,
+                     @SerializedName("tag")      val tag: Any,
+                     @SerializedName("id")       val id: Int,
+                     @SerializedName("adIndex")  val adIndex: Int) {
     /**
      * dataType : TagBriefCard
      * id : 930
@@ -52,7 +52,7 @@ class BriefCard(@SerializedName("type")     val type: String,
                         @SerializedName("ifNewest")     val ifNewest: Boolean,
                         @SerializedName("newestEndTime")
                         val newestEndTime: Any,
-                        @SerializedName("expert")       val expert: Boolean,)
+                        @SerializedName("expert")       val expert: Boolean)
 
     /**
      * follow : {"itemType":"tag","itemId":930,"followed":false}
