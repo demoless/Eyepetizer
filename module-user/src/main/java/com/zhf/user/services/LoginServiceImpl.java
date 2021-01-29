@@ -17,7 +17,7 @@ import com.zhf.common.services.config.ServicesConfig;
  *
  */
 @Route(path = ServicesConfig.User.LONGING_SERVICE , name = "登录服务")
-public class ILoginServiceImpl implements ILoginService
+public class LoginServiceImpl implements ILoginService
 {
     private boolean loginStatus;
     
