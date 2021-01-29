@@ -62,38 +62,42 @@ class LoginActivity : AppCompatActivity() {
         val animator2 = ObjectAnimator.ofFloat(binding.loginBgImage2, "alpha", 0f, 1.0f)
         val animatorScale1 = ObjectAnimator.ofFloat(binding.loginBgImage1, "scaleX", 1.0f, 1.3f)
         val animatorScale2 = ObjectAnimator.ofFloat(binding.loginBgImage1, "scaleY", 1.0f, 1.3f)
-        val animatorSet1 = AnimatorSet()
-        animatorSet1.duration = 5000
-        animatorSet1.play(animator1).with(animator2).with(animatorScale1).with(animatorScale2)
-        animatorSet1.addListener(object : Animator.AnimatorListener {
-            override fun onAnimationStart(animation: Animator) {}
-            override fun onAnimationEnd(animation: Animator) {
-                // 放大的View复位
-                binding.loginBgImage1.scaleX = 1.0f
-                binding.loginBgImage1.scaleY = 1.0f
-            }
 
-            override fun onAnimationCancel(animation: Animator) {}
-            override fun onAnimationRepeat(animation: Animator) {}
-        })
+        val animatorSet1 = AnimatorSet().also {
+            it.duration = 5000
+            it.addListener(object : Animator.AnimatorListener {
+                override fun onAnimationStart(animation: Animator) {}
+                override fun onAnimationEnd(animation: Animator) {
+                    // 放大的View复位
+                    binding.loginBgImage1.scaleX = 1.0f
+                    binding.loginBgImage1.scaleY = 1.0f
+                }
+                override fun onAnimationCancel(animation: Animator) {}
+                override fun onAnimationRepeat(animation: Animator) {}
+            })
+        }.apply {
+            this.play(animator1).with(animator2).with(animatorScale1).with(animatorScale2)
+        }
+
         val animator3 = ObjectAnimator.ofFloat(binding.loginBgImage2, "alpha", 1.0f, 0f)
         val animator4 = ObjectAnimator.ofFloat(binding.loginBgImage1, "alpha", 0f, 1.0f)
         val animatorScale3 = ObjectAnimator.ofFloat(binding.loginBgImage2, "scaleX", 1.0f, 1.3f)
         val animatorScale4 = ObjectAnimator.ofFloat(binding.loginBgImage2, "scaleY", 1.0f, 1.3f)
-        val animatorSet2 = AnimatorSet()
-        animatorSet2.duration = 5000
-        animatorSet2.play(animator3).with(animator4).with(animatorScale3).with(animatorScale4)
-        animatorSet2.addListener(object : Animator.AnimatorListener {
-            override fun onAnimationStart(animation: Animator) {}
-            override fun onAnimationEnd(animation: Animator) {
-                // 放大的View复位
-                binding.loginBgImage2.scaleX = 1.0f
-                binding.loginBgImage2.scaleY = 1.0f
-            }
-
-            override fun onAnimationCancel(animation: Animator) {}
-            override fun onAnimationRepeat(animation: Animator) {}
-        })
+        val animatorSet2 = AnimatorSet().also {
+            it.duration = 5000
+            it.addListener(object : Animator.AnimatorListener {
+                override fun onAnimationStart(animation: Animator) {}
+                override fun onAnimationEnd(animation: Animator) {
+                    // 放大的View复位
+                    binding.loginBgImage2.scaleX = 1.0f
+                    binding.loginBgImage2.scaleY = 1.0f
+                }
+                override fun onAnimationCancel(animation: Animator) {}
+                override fun onAnimationRepeat(animation: Animator) {}
+            })
+        }.apply {
+            this.play(animator3).with(animator4).with(animatorScale3).with(animatorScale4)
+        }
 
         animatorSet.playSequentially(animatorSet1, animatorSet2)
 
