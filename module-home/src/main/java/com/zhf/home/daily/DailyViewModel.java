@@ -1,5 +1,7 @@
 package com.zhf.home.daily;
 
+import androidx.annotation.NonNull;
+
 import com.zhf.base.model.BasePagingModel;
 import com.zhf.base.model.IPagingModelListener;
 import com.zhf.base.viewmodel.MvmBaseViewModel;
@@ -70,20 +72,20 @@ public class DailyViewModel extends MvmBaseViewModel<IDailyView, DailyModel>
         model.loadMore();
     }
     
-    @Override
-    protected void initModel()
+    @NonNull
+	@Override
+    protected DailyModel initModel()
     {
         model = new DailyModel();
         model.register(this);
         model.getCacheDataAndLoad();
+        return model;
     }
 
     @Override
     public void detachUi() {
         super.detachUi();
-        if (model != null) {
-            model.unRegister(this);
-        }
+        model.unRegister(this);
 
     }
 }

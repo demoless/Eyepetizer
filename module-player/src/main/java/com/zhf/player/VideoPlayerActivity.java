@@ -56,9 +56,9 @@ public class VideoPlayerActivity extends
     
     // 旋转帮助类
     private OrientationUtils orientationUtils;
-    
+
     private boolean isPlay = true;
-    
+
     private boolean isPause;
     
     @Override
@@ -287,11 +287,7 @@ public class VideoPlayerActivity extends
                 mSensorManager.set(listener, null);
                 
             }
-            catch (NoSuchFieldException e)
-            {
-                e.printStackTrace();
-            }
-            catch (IllegalAccessException e)
+            catch (NoSuchFieldException | IllegalAccessException e)
             {
                 e.printStackTrace();
             }

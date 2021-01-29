@@ -1,5 +1,7 @@
 package com.zhf.more.themes;
 
+import androidx.annotation.NonNull;
+
 import com.zhf.base.model.BaseModel;
 import com.zhf.base.model.IModelListener;
 import com.zhf.base.viewmodel.MvmBaseViewModel;
@@ -19,20 +21,20 @@ public class ThemeFragmentViewModel
     implements IModelListener<ArrayList<Tabs>>
 {
     
-    @Override
-    protected void initModel()
+    @NonNull
+	@Override
+    protected ThemeModel initModel()
     {
         model = new ThemeModel();
         model.register(this);
         model.getCacheDataAndLoad();
+        return model;
     }
 
     @Override
     public void detachUi() {
         super.detachUi();
-        if (model != null){
-            model.unRegister(this);
-        }
+        model.unRegister(this);
     }
 
     @Override

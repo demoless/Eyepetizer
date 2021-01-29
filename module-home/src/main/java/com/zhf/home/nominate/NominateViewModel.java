@@ -1,5 +1,7 @@
 package com.zhf.home.nominate;
 
+import androidx.annotation.NonNull;
+
 import java.util.ArrayList;
 
 import com.zhf.base.model.BasePagingModel;
@@ -75,19 +77,19 @@ public class NominateViewModel
         
     }
 
-    @Override
-    protected void initModel() {
+    @NonNull
+	@Override
+    protected NominateModel initModel() {
         model = new NominateModel();
         model.register(this);
         model.getCacheDataAndLoad();
+        return model;
     }
 
     @Override
     public void detachUi() {
         super.detachUi();
-        if (model != null) {
-            model.unRegister(this);
-        }
+        model.unRegister(this);
     }
 
     public void tryToRefresh()

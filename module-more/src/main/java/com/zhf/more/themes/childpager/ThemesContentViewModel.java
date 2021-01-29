@@ -1,5 +1,8 @@
 package com.zhf.more.themes.childpager;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.RecentlyNonNull;
+
 import com.zhf.base.model.BasePagingModel;
 import com.zhf.base.model.IPagingModelListener;
 import com.zhf.base.viewmodel.MvmBaseViewModel;
@@ -21,7 +24,9 @@ public class ThemesContentViewModel
     extends MvmBaseViewModel<IThemeContentView, ThemesContentModel>
     implements IPagingModelListener<ArrayList<BaseCustomViewModel>>
 {
-    @Override
+    @NonNull
+	@RecentlyNonNull
+	@Override
     protected void initModel()
     {
 

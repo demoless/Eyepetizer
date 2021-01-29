@@ -1,5 +1,6 @@
 package com.zhf.more.topic;
 
+import androidx.annotation.NonNull;
 import com.zhf.base.model.BasePagingModel;
 import com.zhf.base.model.IPagingModelListener;
 import com.zhf.base.viewmodel.MvmBaseViewModel;
@@ -18,12 +19,14 @@ public class TopicFragmentViewModel
     extends MvmBaseViewModel<ITopicView, TopicModel>
     implements IPagingModelListener<List<BaseCustomViewModel>>
 {
-    @Override
-    protected void initModel()
+    @NonNull
+	@Override
+    protected TopicModel initModel()
     {
         model = new TopicModel();
         model.register(this);
         model.getCacheDataAndLoad();
+        return model;
     }
     
     @Override
@@ -71,10 +74,7 @@ public class TopicFragmentViewModel
     public void detachUi()
     {
         super.detachUi();
-        if (model != null)
-        {
-            model.unRegister(this);
-        }
+        model.unRegister(this);
     }
 
     public void tryRefresh() {

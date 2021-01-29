@@ -14,5 +14,5 @@ interface IVideoPlayerView: IBaseView {
      *
      * @param viewModels data
      */
-    fun onDataLoadFinish(viewModels: ArrayList<BaseCustomViewModel?>?)
+    fun onDataLoadFinish(viewModels: ArrayList<BaseCustomViewModel>)
 }

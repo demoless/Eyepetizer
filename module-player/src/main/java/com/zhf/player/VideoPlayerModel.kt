@@ -36,9 +36,10 @@ class VideoPlayerModel<T>: BaseModel<T>() {
         private const val REPLY_URL: String = "http://baobab.kaiyanapp.com/api/v2/replies/video"
     }
 
+    @JvmField
     var videoId = 186856
 
-    override fun load() {
+    public override fun load() {
         val nominateObservable = EasyHttp.get(NOMINATE_URL)
                 .params("id", videoId.toString())
                 .cacheKey("nominate")
@@ -47,7 +48,6 @@ class VideoPlayerModel<T>: BaseModel<T>() {
                 .params("videoId", videoId.toString())
                 .cacheKey("reply")
                 .execute(String::class.java)
-        // 使用zip操作符 合并网络请求 统一处理结果
         // 使用zip操作符 合并网络请求 统一处理结果
         Observable.zip(nominateObservable,
                 replyObservable,
@@ -144,22 +144,22 @@ class VideoPlayerModel<T>: BaseModel<T>() {
             return
         }
         val videoCardViewModel = VideoCardViewModel().also {
-            it.coverUrl = videoSmallCard.data.cover.detail
-            it.videoTime = videoSmallCard.data.duration
-            it.title = videoSmallCard.data.title
-            it.description = (videoSmallCard.data.author.name + " / # "
-                    + videoSmallCard.data.category)
-            it.authorUrl = videoSmallCard.data.author.icon
-            it.userDescription = videoSmallCard.data.author.description
-            it.nickName = videoSmallCard.data.author.name
-            it.video_description = videoSmallCard.data.description
-            it.playerUrl = videoSmallCard.data.playUrl
-            it.blurredUrl = videoSmallCard.data.cover.blurred
-            it.videoId = videoSmallCard.data.id
-            it.collectionCount = videoSmallCard.data.consumption.collectionCount
-            it.shareCount = videoSmallCard.data.consumption.shareCount
+            val data = videoSmallCard.data
+            it.coverUrl = data.cover.detail
+            it.videoTime = data.duration
+            it.title = data.title
+            it.description = (data.author.name + " / # "
+                    + data.category)
+            it.authorUrl = data.author.icon
+            it.userDescription = data.author.description
+            it.nickName = data.author.name
+            it.video_description = data.description
+            it.playerUrl = data.playUrl
+            it.blurredUrl = data.cover.blurred
+            it.videoId = data.id
+            it.collectionCount = data.consumption.collectionCount
+            it.shareCount = data.consumption.shareCount
         }
-
         viewModels.add(videoCardViewModel)
     }
 }

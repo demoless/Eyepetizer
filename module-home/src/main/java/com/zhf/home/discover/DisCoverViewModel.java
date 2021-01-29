@@ -1,5 +1,7 @@
 package com.zhf.home.discover;
 
+import androidx.annotation.NonNull;
+
 import java.util.ArrayList;
 
 import com.zhf.base.model.BaseModel;
@@ -50,20 +52,20 @@ public class DisCoverViewModel
         model.load();
     }
     
-    @Override
-    protected void initModel()
+    @NonNull
+	@Override
+    protected DisCoverModel initModel()
     {
         model = new DisCoverModel();
         model.register(this);
         model.getCacheDataAndLoad();
+        return model;
     }
 
     @Override
     public void detachUi() {
         super.detachUi();
-        if (model != null) {
-            model.unRegister(this);
-        }
+        model.unRegister(this);
 
     }
 }

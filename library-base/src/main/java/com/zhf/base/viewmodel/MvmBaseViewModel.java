@@ -1,5 +1,7 @@
 package com.zhf.base.viewmodel;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.lifecycle.ViewModel;
 
 import com.zhf.base.model.SuperBaseModel;
@@ -19,23 +21,21 @@ public  abstract class MvmBaseViewModel<V, M extends SuperBaseModel> extends Vie
 {
     
     private Reference<V> mUiRef;
-    
-    protected M model;
+
+    @NonNull
+    protected M model = initModel();
     
     @Override
     public void attachUi(V view)
     {
         mUiRef = new WeakReference<>(view);
     }
-    
+
+    @Nullable
     @Override
     public V getPageView()
     {
-        if (null == mUiRef)
-        {
-            return null;
-        }
-        if (null != mUiRef.get())
+        if (mUiRef != null && null != mUiRef.get())
         {
             return mUiRef.get();
         }
@@ -56,10 +56,7 @@ public  abstract class MvmBaseViewModel<V, M extends SuperBaseModel> extends Vie
             mUiRef.clear();
             mUiRef = null;
         }
-        if (null != model)
-        {
-            model.cancel();
-        }
+        model.cancel();
     }
 
 
@@ -67,5 +64,6 @@ public  abstract class MvmBaseViewModel<V, M extends SuperBaseModel> extends Vie
 
     }
 
-    protected  abstract void initModel();
+    @NonNull
+    protected  abstract M initModel();
 }

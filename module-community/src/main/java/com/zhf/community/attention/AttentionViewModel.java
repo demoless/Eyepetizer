@@ -1,5 +1,7 @@
 package com.zhf.community.attention;
 
+import androidx.annotation.NonNull;
+
 import com.zhf.base.model.BasePagingModel;
 import com.zhf.base.model.IPagingModelListener;
 import com.zhf.base.viewmodel.MvmBaseViewModel;
@@ -61,22 +63,21 @@ public class AttentionViewModel
         }
     }
     
+    @NonNull
     @Override
-    protected void initModel()
+    protected AttentionModel initModel()
     {
         model = new AttentionModel();
         model.register(this);
         model.getCacheDataAndLoad();
+        return model;
     }
     
     @Override
     public void detachUi()
     {
         super.detachUi();
-        if (model != null)
-        {
-            model.unRegister(this);
-        }
+        model.unRegister(this);
     }
     
     public void tryRefresh()
