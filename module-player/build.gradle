@@ -4,7 +4,7 @@ apply plugin: 'kotlin-android-extensions'
 android {
     defaultConfig {
         if (isBuildModule.toBoolean()){
-            applicationId "com.drz.player"
+            applicationId "com.zhf.player"
         }
     }
     //统一资源前缀，规范资源引用

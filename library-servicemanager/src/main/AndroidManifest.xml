@@ -6,7 +6,7 @@
         <provider
             android:exported="false"
             android:authorities="${applicationId}.svcmgr"
-            android:name="com.limpoxe.support.servicemanager.com.support.servicemanager.ServiceProvider"/>
+            android:name="com.support.servicemanager.ServiceProvider"/>
 
     </application>
 

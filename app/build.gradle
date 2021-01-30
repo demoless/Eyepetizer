@@ -2,6 +2,9 @@ import com.four.buildsrc.hotfix.HotfixPlugin
 
 apply plugin: 'com.android.application'
 apply plugin: HotfixPlugin
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
 
 def keystorePropertiesFile = rootProject.file("keystore.properties")
 
@@ -109,5 +112,5 @@ dependencies {
 
         implementation project(':hotfix')
     }
-    debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.2'
+    debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.4'
 }

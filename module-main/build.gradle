@@ -5,7 +5,7 @@ apply plugin: 'kotlin-android-extensions'
 android {
     defaultConfig {
        if (isBuildModule.toBoolean()){
-           applicationId "com.drz.main"
+           applicationId "com.zhf.main"
        }
     }
     //统一资源前缀，规范资源引用
@@ -22,9 +22,9 @@ dependencies {
     //组件依赖基础库
     api project(':library-common')
     api 'me.majiajie:pager-bottom-tab-strip:2.3.0X'
-    api "androidx.core:core-ktx:+"
-    api "androidx.lifecycle:lifecycle-viewmodel-ktx:2.1.0"
-    api "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    api "androidx.core:core-ktx:1.3.2"
+    api "androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0"
+    api "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
 }
 repositories {
     mavenCentral()

@@ -42,10 +42,6 @@ open class BaseApplication : Application() {
         }
     }
 
-    override fun onCreate() {
-        super.onCreate()
-    }
-
     fun issDebug(): Boolean = isDebug
 
     fun setsDebug(debug: Boolean) {

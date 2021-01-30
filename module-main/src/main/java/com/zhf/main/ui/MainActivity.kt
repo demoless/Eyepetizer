@@ -80,10 +80,15 @@ class MainActivity : MvvmBaseActivity<MainActivityMainBinding, IMvvmBaseViewMode
 
     private fun initFragments() {
         fragments.apply {
-            this.add(ARouter.getInstance().build(RouterFragmentPath.Home.PAGER_HOME).navigation() as Fragment)
-            this.add(ARouter.getInstance().build(RouterFragmentPath.Community.PAGER_COMMUNITY).navigation() as Fragment)
-            this.add(ARouter.getInstance().build(RouterFragmentPath.More.PAGER_MORE).navigation() as Fragment)
-            this.add(ARouter.getInstance().build(RouterFragmentPath.User.PAGER_USER).navigation() as Fragment)
+            //通过ARouter 获取其他组件提供的fragment
+            val homeFragment = ARouter.getInstance().build(RouterFragmentPath.Home.PAGER_HOME).navigation() as Fragment
+            val communityFragment = ARouter.getInstance().build(RouterFragmentPath.Community.PAGER_COMMUNITY).navigation() as Fragment
+            val moreFragment = ARouter.getInstance().build(RouterFragmentPath.More.PAGER_MORE).navigation() as Fragment
+            val userFragment = ARouter.getInstance().build(RouterFragmentPath.User.PAGER_USER).navigation() as Fragment
+            this.add(homeFragment)
+            this.add(communityFragment)
+            this.add(moreFragment)
+            this.add(userFragment)
         }
         adapter.setData(fragments)
     }

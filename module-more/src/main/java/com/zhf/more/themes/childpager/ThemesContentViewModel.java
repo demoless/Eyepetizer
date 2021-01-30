@@ -1,7 +1,6 @@
 package com.zhf.more.themes.childpager;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.RecentlyNonNull;
 
 import com.zhf.base.model.BasePagingModel;
 import com.zhf.base.model.IPagingModelListener;
@@ -25,11 +24,10 @@ public class ThemesContentViewModel
     implements IPagingModelListener<ArrayList<BaseCustomViewModel>>
 {
     @NonNull
-	@RecentlyNonNull
 	@Override
-    protected void initModel()
+    protected ThemesContentModel initModel()
     {
-
+        return model;
     }
 
     public void initModel(String typeName,String apiUrl){
@@ -85,10 +83,7 @@ public class ThemesContentViewModel
     public void detachUi()
     {
         super.detachUi();
-        if (model != null)
-        {
-            model.unRegister(this);
-        }
+        model.unRegister(this);
     }
     
     public void tryRefresh()
