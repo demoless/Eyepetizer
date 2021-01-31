@@ -84,11 +84,11 @@ class MainActivity : MvvmBaseActivity<MainActivityMainBinding, IMvvmBaseViewMode
             val homeFragment = ARouter.getInstance().build(RouterFragmentPath.Home.PAGER_HOME).navigation() as Fragment
             val communityFragment = ARouter.getInstance().build(RouterFragmentPath.Community.PAGER_COMMUNITY).navigation() as Fragment
             val moreFragment = ARouter.getInstance().build(RouterFragmentPath.More.PAGER_MORE).navigation() as Fragment
-            //val userFragment = ARouter.getInstance().build(RouterFragmentPath.User.PAGER_USER).navigation() as Fragment
+            val userFragment = ARouter.getInstance().build(RouterFragmentPath.User.PAGER_USER).navigation() as Fragment
             this.add(homeFragment)
             this.add(communityFragment)
             this.add(moreFragment)
-            //this.add(userFragment)
+            this.add(userFragment)
         }
         adapter.setData(fragments)
     }

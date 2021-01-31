@@ -36,8 +36,16 @@ android {
     //统一资源前缀,规范资源引用
     resourcePrefix "video_"
 
-    dataBinding {
-        enabled true
+    buildFeatures {
+        dataBinding = true
+    }
+
+    kapt {
+        arguments {
+            // 路由框架译配置
+            // module名称
+            arg("AROUTER_MODULE_NAME", project.getName())
+        }
     }
 
     compileOptions{

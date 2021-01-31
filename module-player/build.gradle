@@ -1,6 +1,7 @@
 apply from: "../module.build.gradle"
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
+apply plugin: "kotlin-kapt"
 android {
     defaultConfig {
         if (isBuildModule.toBoolean()){
@@ -17,6 +18,17 @@ android {
 
     kotlinOptions {
         jvmTarget = '1.8'
+    }
+    buildFeatures {
+        dataBinding = true
+    }
+
+    kapt {
+        arguments {
+            // 路由框架译配置
+            // module名称
+            arg("AROUTER_MODULE_NAME", project.getName())
+        }
     }
 }
 

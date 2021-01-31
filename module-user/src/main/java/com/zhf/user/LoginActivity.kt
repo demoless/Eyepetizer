@@ -22,6 +22,7 @@ import com.zhf.user.databinding.UserActivityLoginBinding
 class LoginActivity : AppCompatActivity() {
 
     @Autowired(name = ServicesConfig.User.LONGING_SERVICE)
+    @JvmField
     var iLoginService: ILoginService? = null
 
     private val animatorSet by lazy {

@@ -22,6 +22,10 @@ android {
         jvmTarget = '1.8'
     }
 
+    buildFeatures {
+        dataBinding = true
+    }
+
     kapt {
         arguments {
             // 路由框架译配置
