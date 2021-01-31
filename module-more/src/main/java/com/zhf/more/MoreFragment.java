@@ -24,7 +24,7 @@ import androidx.fragment.app.FragmentPagerAdapter;
  */
 @Route(path = RouterFragmentPath.More.PAGER_MORE)
 public class MoreFragment
-    extends MvvmLazyFragment<MoreFragmentMoreBinding, IMvvmBaseViewModel>
+    extends MvvmLazyFragment<MoreFragmentMoreBinding, IMvvmBaseViewModel<?>>
 {
     
     private MoreFragmentPageAdapter adapter;
@@ -93,7 +93,7 @@ public class MoreFragment
     }
     
     @Override
-    protected IMvvmBaseViewModel getViewModel()
+    protected IMvvmBaseViewModel<?> getViewModel()
     {
         return null;
     }

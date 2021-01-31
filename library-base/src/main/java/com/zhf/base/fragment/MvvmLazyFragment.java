@@ -34,7 +34,8 @@ import java.util.List;
  * <p>
  *
  */
-public  abstract class MvvmLazyFragment<V extends ViewDataBinding,VM extends IMvvmBaseViewModel> extends Fragment implements IBaseView {
+public  abstract class MvvmLazyFragment<V extends ViewDataBinding,VM extends IMvvmBaseViewModel>
+        extends Fragment implements IBaseView {
     protected V viewDataBinding;
 
     protected VM viewModel;

@@ -42,8 +42,7 @@ public class AttentionFragment
     
     public static AttentionFragment newInstance()
     {
-        AttentionFragment fragment = new AttentionFragment();
-        return fragment;
+        return new AttentionFragment();
     }
     
     @Override
@@ -165,17 +164,10 @@ public class AttentionFragment
     public void onDataLoadFinish(ArrayList<BaseCustomViewModel> viewModels,
         boolean isFirstPage)
     {
-        if (isFirstPage)
-        {
+        if (adapter != null) {
             adapter.setNewData(viewModels);
             showContent();
-            viewDataBinding.refreshLayout.finishRefresh(true);
-        }
-        else
-        {
-            adapter.addData(viewModels);
-            showContent();
-            viewDataBinding.refreshLayout.finishLoadMore(true);
+            viewDataBinding.refreshLayout.finishRefresh(isFirstPage);
         }
     }
 

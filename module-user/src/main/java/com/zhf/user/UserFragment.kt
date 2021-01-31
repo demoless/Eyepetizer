@@ -22,7 +22,7 @@ import java.util.*
  * description:
  */
 @Route(path = RouterFragmentPath.User.PAGER_USER)
-class UserFragment : MvvmBaseFragment<UserFragmentLayoutBinding, IMvvmBaseViewModel<*>>() {
+class UserFragment() : MvvmBaseFragment<UserFragmentLayoutBinding, IMvvmBaseViewModel<*>>() {
 
     private val adapter by lazy {
         RecyclerAdapter()

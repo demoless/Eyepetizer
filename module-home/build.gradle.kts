@@ -27,6 +27,15 @@ android {
     buildFeatures {
         dataBinding = true
     }
+
+    compileOptions{
+        sourceCompatibility = JavaVersion.VERSION_1_8
+                targetCompatibility = JavaVersion.VERSION_1_8
+    }
+
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
 }
 
 dependencies {
@@ -35,8 +44,8 @@ dependencies {
     implRepo(Dep.appcompat)
     implRepo(Dep.googleMaterial)
     implRepo(Dep.constraintLayout)
-    implRepo(Dep.arouter_api)
-    implRepo(Dep.arouter_compiler)
+    apiRepo(Dep.arouter_api)
+    kapt(Dep.arouter_compiler)
     androidTestImpl(Dep.junitExt)
     androidTestImpl(Dep.espressoCore)
     //组件依赖基础库

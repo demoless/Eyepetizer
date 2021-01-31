@@ -1,7 +1,9 @@
+import com.four.buildsrc.*
 apply from: "../module.build.gradle"
 
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
+apply plugin: "kotlin-kapt"
 android {
     defaultConfig {
         if (isBuildModule.toBoolean()){
@@ -10,6 +12,23 @@ android {
     }
     //统一资源前缀，规范资源引用
     resourcePrefix "user_"
+
+    compileOptions{
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+
+    kapt {
+        arguments {
+            // 路由框架译配置
+            // module名称
+            arg("AROUTER_MODULE_NAME", project.getName())
+        }
+    }
 }
 
 
@@ -18,7 +37,7 @@ dependencies {
     androidTestImplementation rootProject.ext.androidx["androidx.test.ext-junit"]
     androidTestImplementation rootProject.ext.androidx["androidx.test.espresso:espresso-core"]
     //组件中依赖阿里路由编译框架
-    annotationProcessor rootProject.ext.dependencies["arouter-compiler"]
-    annotationProcessor rootProject.ext.dependencies["glide-compiler"]
+    kapt(Dep.arouter_compiler)
+    kapt(Dep.glide_compiler)
     api project(':library-common')
 }

@@ -24,8 +24,7 @@ android {
     sourceSets {
         main {
 //            jniLibs.srcDirs = ['libs']
-            if (isBuildModule.toBoolean()) {
-            } else {
+            if (!isBuildModule.toBoolean()) {
                 resources {
                     //正式版本时，排除debug文件夹下所有调试文件
                     exclude 'src/debug/*'
@@ -37,9 +36,13 @@ android {
     //统一资源前缀,规范资源引用
     resourcePrefix "net_"
 
-    compileOptions {
-        sourceCompatibility = 1.8
-        targetCompatibility = 1.8
+    compileOptions{
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    kotlinOptions {
+        jvmTarget = '1.8'
     }
 
     lintOptions {

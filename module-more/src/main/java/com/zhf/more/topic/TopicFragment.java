@@ -101,20 +101,12 @@ public class TopicFragment
         {
             return;
         }
-        if (isFirstPage)
-        {
+        if (adapter != null) {
             adapter.setNewData(data);
             showContent();
-            viewDataBinding.refreshLayout.finishRefresh(true);
+            viewDataBinding.refreshLayout.finishRefresh(isFirstPage);
+        }
 
-        }
-        else
-        {
-            adapter.addData(data);
-            showContent();
-            viewDataBinding.refreshLayout.finishLoadMore(true);
-        }
-        
     }
     
     @Override

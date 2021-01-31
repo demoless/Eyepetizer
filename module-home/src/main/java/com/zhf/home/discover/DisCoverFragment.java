@@ -30,8 +30,7 @@ public class DisCoverFragment
     
     public static DisCoverFragment newInstance()
     {
-        DisCoverFragment fragment = new DisCoverFragment();
-        return fragment;
+        return new DisCoverFragment();
     }
     
     @Override
@@ -96,15 +95,10 @@ public class DisCoverFragment
     public void onDataLoadFinish(ArrayList<BaseCustomViewModel> viewModels,
         boolean isEmpty)
     {
-        if (isEmpty)
-        {
-            viewDataBinding.refreshLayout.finishRefresh(false);
+        viewDataBinding.refreshLayout.finishRefresh(!isEmpty);
+        if (adapter != null) {
+            adapter.setNewData(viewModels);
+            showContent();
         }
-        else
-        {
-            viewDataBinding.refreshLayout.finishRefresh(true);
-        }
-        adapter.setNewData(viewModels);
-        showContent();
     }
 }

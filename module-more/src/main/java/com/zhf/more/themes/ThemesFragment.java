@@ -77,7 +77,9 @@ public class ThemesFragment extends MvvmLazyFragment<MoreFragmentThemesBinding, 
 
     @Override
     public void onDataLoaded(ArrayList<Tabs> tabs) {
-        adapter.setData(tabs);
+        if (adapter != null) {
+            adapter.setData(tabs);
+        }
         viewDataBinding.tabLayout.removeAllTabs();
         for (Tabs tabs1 : tabs){
             viewDataBinding.tabLayout.addTab(viewDataBinding.tabLayout.newTab().setText(tabs1.getName()));

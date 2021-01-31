@@ -1,6 +1,7 @@
 apply from: "../module.build.gradle"
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
+apply plugin: "kotlin-kapt"
 
 android {
     defaultConfig {
@@ -10,6 +11,15 @@ android {
     }
     //统一资源前缀，规范资源引用
     resourcePrefix "main_"
+
+    compileOptions{
+        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
+    }
+
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
 }
 
 dependencies {
@@ -17,8 +27,8 @@ dependencies {
     androidTestImplementation rootProject.ext.androidx["androidx.test.ext-junit"]
     androidTestImplementation rootProject.ext.androidx["androidx.test.espresso:espresso-core"]
     //组件中依赖阿里路由编译框架
-    annotationProcessor rootProject.ext.dependencies["arouter-compiler"]
-    annotationProcessor rootProject.ext.dependencies["glide-compiler"]
+    kapt rootProject.ext.dependencies["arouter-compiler"]
+    kapt rootProject.ext.dependencies["glide-compiler"]
     //组件依赖基础库
     api project(':library-common')
     api 'me.majiajie:pager-bottom-tab-strip:2.3.0X'

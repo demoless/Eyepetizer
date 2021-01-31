@@ -66,6 +66,7 @@ object Dep {
 
     const val arouter_api = "com.alibaba:arouter-api:1.5.0"
     const val arouter_compiler = "com.alibaba:arouter-compiler:1.2.2"
+    const val glide_compiler = "com.github.bumptech.glide:compiler:4.9.0"
 }
 
 fun DependencyHandlerScope.implRepo(variant: String) {

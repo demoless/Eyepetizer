@@ -1,7 +1,6 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
-apply plugin: 'kotlin-kapt'
 
 android {
     compileSdkVersion rootProject.ext.android.compileSdkVersion
@@ -16,8 +15,7 @@ android {
     sourceSets {
         main {
 //            jniLibs.srcDirs = ['libs']
-            if (isBuildModule.toBoolean()) {
-            } else {
+            if (!isBuildModule.toBoolean()) {
                 resources {
                     //正式版本时，排除debug文件夹下所有调试文件
                     exclude 'src/debug/*'
@@ -40,9 +38,13 @@ android {
         enabled true
     }
 
-    compileOptions {
-        sourceCompatibility = 1.8
-        targetCompatibility = 1.8
+    compileOptions{
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    kotlinOptions {
+        jvmTarget = '1.8'
     }
 
 }

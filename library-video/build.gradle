@@ -17,8 +17,7 @@ android {
     sourceSets {
         main {
 //            jniLibs.srcDirs = ['libs']
-            if (isBuildModule.toBoolean()) {
-            } else {
+            if (!isBuildModule.toBoolean()) {
                 resources {
                     //正式版本时，排除debug文件夹下所有调试文件
                     exclude 'src/debug/*'
@@ -41,9 +40,13 @@ android {
         enabled true
     }
 
-    compileOptions {
-        sourceCompatibility = 1.8
-        targetCompatibility = 1.8
+    compileOptions{
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    kotlinOptions {
+        jvmTarget = '1.8'
     }
 
 }
@@ -51,7 +54,7 @@ android {
 dependencies {
     api rootProject.ext.androidx["androidx.recyclerview"]
     api rootProject.ext.dependencies["glide"]
-    annotationProcessor rootProject.ext.dependencies["glide-compiler"]
+    kapt rootProject.ext.dependencies["glide-compiler"]
     //GSYVideoPlayer
     api 'com.shuyu:gsyVideoPlayer-java:7.1.2'
     //根据你的需求ijk模式的so

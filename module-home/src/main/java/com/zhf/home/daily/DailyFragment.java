@@ -91,19 +91,10 @@ public class DailyFragment extends
     public void onDataLoadFinish(ArrayList<BaseCustomViewModel> viewModels,
         boolean isFirstPage)
     {
-        if (isFirstPage)
-        {
-
+        if (adapter != null) {
             adapter.setNewData(viewModels);
             showContent();
-            viewDataBinding.refreshLayout.finishRefresh(true);
-        }
-        else
-        {
-
-            adapter.addData(viewModels);
-            showContent();
-            viewDataBinding.refreshLayout.finishLoadMore(true);
+            viewDataBinding.refreshLayout.finishRefresh(isFirstPage);
         }
     }
     
