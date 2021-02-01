@@ -12,13 +12,22 @@ plugins {
 android {
     defaultConfig {
         if (com.four.buildsrc.util.PropertiesUtil.getBooleanProperty("isBuildModule", false, project)){
-            applicationId("com.zhf.home")
+            applicationId("com.zhf.author")
         }
     }
     //统一资源前缀，规范资源引用
-    resourcePrefix("home_")
+    resourcePrefix("author_")
 
     sourceSets.getAt("main").java.srcDir("src/main/java")
+
+    buildFeatures {
+        dataBinding = true
+    }
+
+    compileOptions{
+        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
+    }
 
     kotlinOptions {
         jvmTarget = "1.8"
@@ -39,10 +48,9 @@ dependencies {
     implRepo(Dep.appcompat)
     implRepo(Dep.googleMaterial)
     implRepo(Dep.constraintLayout)
-    apiRepo(Dep.arouter_api)
     kapt(Dep.arouter_compiler)
     androidTestImpl(Dep.junitExt)
     androidTestImpl(Dep.espressoCore)
     //组件依赖基础库
-   apiProject(":library-common")
+    apiProject(":library-common")
 }

@@ -16,8 +16,10 @@
 
 package com.zhf.http.request;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.text.TextUtils;
+import android.util.Log;
 
 import com.zhf.http.EasyHttp;
 import com.zhf.http.api.ApiService;
@@ -104,23 +106,25 @@ public abstract class BaseRequest<R extends BaseRequest> {
 
     public BaseRequest(String url) {
         this.url = url;
+        Log.d("url", "BaseRequest url is: "+ url);
         context = EasyHttp.getContext();
         EasyHttp config = EasyHttp.getInstance();
-        this.baseUrl = config.getBaseUrl();
+        this.baseUrl = EasyHttp.getBaseUrl();
         if (!TextUtils.isEmpty(this.baseUrl)) {
             httpUrl = HttpUrl.parse(baseUrl);
         }
         if (baseUrl == null && url != null && (url.startsWith("http://") || url.startsWith("https://"))) {
             httpUrl = HttpUrl.parse(url);
+            assert httpUrl != null;
             baseUrl = httpUrl.url().getProtocol() + "://" + httpUrl.url().getHost() + "/";
         }
-        cacheMode = config.getCacheMode();                                //添加缓存模式
-        cacheTime = config.getCacheTime();                                //缓存时间
-        retryCount = config.getRetryCount();                              //超时重试次数
-        retryDelay = config.getRetryDelay();                              //超时重试延时
-        retryIncreaseDelay = config.getRetryIncreaseDelay();              //超时重试叠加延时
+        cacheMode = EasyHttp.getCacheMode();                                //添加缓存模式
+        cacheTime = EasyHttp.getCacheTime();                                //缓存时间
+        retryCount = EasyHttp.getRetryCount();                              //超时重试次数
+        retryDelay = EasyHttp.getRetryDelay();                              //超时重试延时
+        retryIncreaseDelay = EasyHttp.getRetryIncreaseDelay();              //超时重试叠加延时
         //Okhttp  cache
-        cache = config.getHttpCache();
+        cache = EasyHttp.getHttpCache();
         //默认添加 Accept-Language
         String acceptLanguage = HttpHeaders.getAcceptLanguage();
         if (!TextUtils.isEmpty(acceptLanguage))
@@ -365,14 +369,10 @@ public abstract class BaseRequest<R extends BaseRequest> {
     /**
      * 移除缓存（key）
      */
+    @SuppressLint("CheckResult")
     public void removeCache(String key) {
         getRxCache().remove(key).compose(RxUtil.<Boolean>io_main())
-                .subscribe(new Consumer<Boolean>() {
-                    @Override
-                    public void accept(@NonNull Boolean aBoolean) throws Exception {
-                        HttpLog.i("removeCache success!!!");
-                    }
-                }, new Consumer<Throwable>() {
+                .subscribe(aBoolean -> HttpLog.i("removeCache success!!!"), new Consumer<Throwable>() {
                     @Override
                     public void accept(@NonNull Throwable throwable) throws Exception {
                         HttpLog.i("removeCache err!!!" + throwable);

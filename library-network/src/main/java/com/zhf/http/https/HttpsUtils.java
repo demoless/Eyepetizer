@@ -17,6 +17,8 @@
 package com.zhf.http.https;
 
 
+import android.annotation.SuppressLint;
+
 import com.zhf.http.utils.HttpLog;
 
 import java.io.IOException;
@@ -64,11 +66,7 @@ public class HttpsUtils {
             sslParams.sSLSocketFactory = sslContext.getSocketFactory();
             sslParams.trustManager = trustManager;
             return sslParams;
-        } catch (NoSuchAlgorithmException e) {
-            throw new AssertionError(e);
-        } catch (KeyManagementException e) {
-            throw new AssertionError(e);
-        } catch (KeyStoreException e) {
+        } catch (NoSuchAlgorithmException | KeyManagementException | KeyStoreException e) {
             throw new AssertionError(e);
         }
     }
@@ -93,12 +91,6 @@ public class HttpsUtils {
             trustManagerFactory = TrustManagerFactory.getInstance(TrustManagerFactory.getDefaultAlgorithm());
             trustManagerFactory.init(keyStore);
             return trustManagerFactory.getTrustManagers();
-        } catch (NoSuchAlgorithmException e) {
-            HttpLog.e(e);
-        } catch (CertificateException e) {
-            HttpLog.e(e);
-        } catch (KeyStoreException e) {
-            HttpLog.e(e);
         } catch (Exception e) {
             HttpLog.e(e);
         }
@@ -113,16 +105,6 @@ public class HttpsUtils {
             KeyManagerFactory keyManagerFactory = KeyManagerFactory.getInstance(KeyManagerFactory.getDefaultAlgorithm());
             keyManagerFactory.init(clientKeyStore, password.toCharArray());
             return keyManagerFactory.getKeyManagers();
-        } catch (KeyStoreException e) {
-            HttpLog.e(e);
-        } catch (NoSuchAlgorithmException e) {
-            HttpLog.e(e);
-        } catch (UnrecoverableKeyException e) {
-            HttpLog.e(e);
-        } catch (CertificateException e) {
-            HttpLog.e(e);
-        } catch (IOException e) {
-            HttpLog.e(e);
         } catch (Exception e) {
             HttpLog.e(e);
         }
@@ -139,10 +121,12 @@ public class HttpsUtils {
     }
 
     private static class UnSafeTrustManager implements X509TrustManager {
+        @SuppressLint("TrustAllX509TrustManager")
         @Override
         public void checkClientTrusted(X509Certificate[] chain, String authType) throws CertificateException {
         }
 
+        @SuppressLint("TrustAllX509TrustManager")
         @Override
         public void checkServerTrusted(X509Certificate[] chain, String authType) throws CertificateException {
         }
@@ -154,8 +138,8 @@ public class HttpsUtils {
     }
 
     private static class MyTrustManager implements X509TrustManager {
-        private X509TrustManager defaultTrustManager;
-        private X509TrustManager localTrustManager;
+        private final X509TrustManager defaultTrustManager;
+        private final X509TrustManager localTrustManager;
 
         public MyTrustManager(X509TrustManager localTrustManager) throws NoSuchAlgorithmException, KeyStoreException {
             TrustManagerFactory var4 = TrustManagerFactory.getInstance(TrustManagerFactory.getDefaultAlgorithm());
@@ -164,6 +148,7 @@ public class HttpsUtils {
             this.localTrustManager = localTrustManager;
         }
 
+        @SuppressLint("TrustAllX509TrustManager")
         @Override
         public void checkClientTrusted(X509Certificate[] chain, String authType) throws CertificateException {
 

@@ -123,6 +123,7 @@ dependencies {
         implementation project(':module-user')
 
         implementation project(':hotfix')
+        implementation project(':module-author')
     }
     debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.4'
 }
