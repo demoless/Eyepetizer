@@ -1,6 +1,6 @@
 import com.four.buildsrc.*
 
-apply(Pair("from", file("../module.build.gradle")))
+apply(from= "../module.build.gradle")
 
 plugins {
     id("com.android.library")
