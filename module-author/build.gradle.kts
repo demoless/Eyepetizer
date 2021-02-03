@@ -48,6 +48,7 @@ dependencies {
     implRepo(Dep.appcompat)
     implRepo(Dep.googleMaterial)
     implRepo(Dep.constraintLayout)
+    implRepo(Dep.coroutines)
     kapt(Dep.arouter_compiler)
     androidTestImpl(Dep.junitExt)
     androidTestImpl(Dep.espressoCore)
